@@ -2,8 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.5.
 
-## Add linter
-For adding linter run `ng add @angular-eslint/schematics`. 
+## For install dependencies
+For add all node dependencies run `npm i`.
 
 ## Development server
 
