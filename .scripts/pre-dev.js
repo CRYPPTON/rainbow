@@ -6,7 +6,7 @@
  */
 var fs = require('fs');
 
-const HOOKS_SRC = 'scripts/githooks/';
+const HOOKS_SRC = '.scripts/githooks/';
 const HOOKS_DST = '.git/hooks/';
 
 function copyHook(hookFileName) {
