@@ -14,7 +14,7 @@ export class AppComponent {
 
   public onClick(): void {
     //test different exception.
-    throw new GameErrorHandler('Poruka', InformationDialogType.win);
+    throw new GameErrorHandler('Do you want to play a new game?', InformationDialogType.lose);
   }
 
   //#endregion
