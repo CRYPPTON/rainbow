@@ -1,0 +1,41 @@
+.exception-dialog {
+  width: 300px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .title {
+    display: flex;
+    align-items: center;
+  }
+
+  .dialog-content {
+    padding-top: 5px;
+    font-size: 16px;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 240px;
+    font-size: 12px;
+  }
+}
+
+.icon {
+  margin-left: 5px;
+}
+
+.win {
+  color: green;
+}
+
+.lose {
+  color: red;
+}
+
+@media screen and (max-width: 600px) {
+  ::ng-deep {
+    .mat-dialog-container {
+      padding: 0 0;
+    }
+  }
+}

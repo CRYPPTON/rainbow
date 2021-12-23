@@ -1,0 +1,21 @@
+<mat-card class="exception-dialog mat-elevation-z0">
+  <mat-card-title class="title">
+    {{ title }}
+    <mat-icon
+      class="icon"
+      [ngClass]="data.informationDialogType === 'win' ? 'win' : 'lose'"
+      >{{ icon }}</mat-icon
+    ></mat-card-title
+  >
+  <mat-card-content class="dialog-content">
+    <p>{{ data.message }}</p>
+  </mat-card-content>
+  <mat-card-actions class="btns-container">
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">
+      Yes
+    </button>
+    <button mat-raised-button color="warn" [mat-dialog-close]="false">
+      No
+    </button>
+  </mat-card-actions>
+</mat-card>
