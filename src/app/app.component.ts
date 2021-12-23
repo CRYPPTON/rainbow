@@ -12,7 +12,10 @@ export class AppComponent {
 
   //#region UI events
 
-  public onClick(): void {
+ /**
+  * This method is used just for test purpose.
+  */
+  public onTestException(): void {
     //test different exception.
     throw new GameErrorHandler('Do you want to play a new game?', InformationDialogType.lose);
   }
