@@ -1,0 +1,17 @@
+{
+  "titles": {
+    "game": "rainbow"
+  },
+  "buttons": {
+    "yes": "Yes",
+    "no": "No",
+    "test": "Test"
+  },
+  "content": {
+    "dialog-content": "Do you want to play a new game?"
+  },
+  "game-message": {
+    "win": "You win!",
+    "lose": "You lose!"
+  }
+}

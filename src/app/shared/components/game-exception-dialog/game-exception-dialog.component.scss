@@ -15,8 +15,15 @@
   }
 
   @media screen and (max-width: 600px) {
+    font-size: 12px;
     width: 240px;
     font-size: 12px;
+    .title {
+      font-size: 20px;
+    }
+    .dialog-content {
+      margin: 0;
+    }
   }
 }
 
