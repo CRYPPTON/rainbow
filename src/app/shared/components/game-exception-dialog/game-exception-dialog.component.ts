@@ -7,8 +7,10 @@ import { InformationDialogData } from '../../models';
   templateUrl: './game-exception-dialog.component.html',
   styleUrls: ['./game-exception-dialog.component.scss']
 })
-export class GameExceptionDialogComponent{
+export class GameExceptionDialogComponent {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: InformationDialogData) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: InformationDialogData) {
+
+  }
 
 }

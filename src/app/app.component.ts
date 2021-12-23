@@ -14,7 +14,7 @@ export class AppComponent {
 
   public onClick(): void {
     //test different exception.
-    throw new GameErrorHandler('Greska', InformationDialogType.win);
+    throw new GameErrorHandler('Poruka', InformationDialogType.win);
   }
 
   //#endregion
