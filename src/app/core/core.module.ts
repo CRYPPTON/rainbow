@@ -5,7 +5,7 @@ import { GameEngineHandlerException } from './error-handlers';
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   providers: [
     {

@@ -1,6 +1,6 @@
 import { InformationDialogType } from "@app-enums";
 
-export interface InforamtionDialogData {
+export interface InformationDialogData {
   message: string;
-  informationDialogType: InformationDialogType
+  informationDialogType: InformationDialogType;
 }
