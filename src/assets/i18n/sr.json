@@ -1,0 +1,17 @@
+{
+  "titles": {
+    "game": "Duga"
+  },
+  "buttons": {
+    "yes": "Da",
+    "no": "Ne",
+    "test": "Test"
+  },
+  "content": {
+    "dialog-content": "Zelite li da zapocnete novu igru?"
+  },
+  "game-message": {
+    "win": "Pogodak!",
+    "lose": "Izgubili ste!"
+  }
+}
