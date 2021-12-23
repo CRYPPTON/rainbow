@@ -15,7 +15,8 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   exports: [
     MaterialModule,
-    GameExceptionDialogComponent
+    GameExceptionDialogComponent,
+    TranslateModule
   ]
 })
 export class SharedModule { }

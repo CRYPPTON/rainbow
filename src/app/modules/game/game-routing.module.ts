@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RainbowComponent } from './components/rainbow/rainbow.component';
+import { RainbowGameComponent } from './components/rainbow-game/rainbow-game.component';
 
 const routes: Routes = [
   {
-    path: '', component: RainbowComponent
+    path: '', component: RainbowGameComponent
   }
 ];
 

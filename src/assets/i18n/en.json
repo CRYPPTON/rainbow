@@ -5,10 +5,15 @@
   "buttons": {
     "yes": "Yes",
     "no": "No",
-    "test": "Test"
+    "test": "Test",
+    "check": "Check",
+    "reset": "Reset",
+    "new-game": "New Game"
   },
   "content": {
-    "dialog-content": "Do you want to play a new game?"
+    "dialog-content": "Do you want to play a new game?",
+    "color-picker": "Available color",
+    "attempt-number": "Attempt Number"
   },
   "game-message": {
     "win": "You win!",

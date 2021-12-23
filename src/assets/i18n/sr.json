@@ -5,10 +5,15 @@
   "buttons": {
     "yes": "Da",
     "no": "Ne",
-    "test": "Test"
+    "test": "Test",
+    "check": "Provera",
+    "reset": "Restartuj",
+    "new-game": "Nova Igra"
   },
   "content": {
-    "dialog-content": "Zelite li da zapocnete novu igru?"
+    "dialog-content": "Zelite li da zapocnete novu igru?",
+    "color-picker": "Dostupne boje",
+    "attempt-number": "Broj pokusaja"
   },
   "game-message": {
     "win": "Pogodak!",

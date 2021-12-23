@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RainbowComponent } from './rainbow.component';
+import { GameTableComponent } from './game-table.component';
 
-describe('RainbowComponent', () => {
-  let component: RainbowComponent;
-  let fixture: ComponentFixture<RainbowComponent>;
+describe('GameTableComponent', () => {
+  let component: GameTableComponent;
+  let fixture: ComponentFixture<GameTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RainbowComponent ]
+      declarations: [ GameTableComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RainbowComponent);
+    fixture = TestBed.createComponent(GameTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

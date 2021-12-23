@@ -1,0 +1,16 @@
+.single-game-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px gray;
+  cursor: pointer;
+  background-color: whitesmoke;
+  height: 100px;
+
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+}

@@ -1,0 +1,31 @@
+.btns-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 120px;
+}
+.pick-color {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.color-box {
+  width: 16px;
+  height: 16px;
+}
+
+.blue {
+  background-color: blue;
+}
+.green {
+  background-color: green;
+}
+.yellow {
+  background-color: yellow;
+}
+.orange {
+  background-color: orange;
+}
+.red {
+  background-color: red;
+}
