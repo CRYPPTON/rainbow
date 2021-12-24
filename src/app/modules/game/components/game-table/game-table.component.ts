@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-game-table',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game-table.component.scss']
 })
 export class GameTableComponent {
-
+  @Input() isUserTable: boolean;
   constructor() { }
 
 }

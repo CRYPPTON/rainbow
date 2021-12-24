@@ -5,6 +5,7 @@
   "buttons": {
     "yes": "Da",
     "no": "Ne",
+    "ok": "U redu",
     "test": "Test",
     "check": "Provera",
     "reset": "Restartuj",
@@ -13,10 +14,14 @@
   "content": {
     "dialog-content": "Zelite li da zapocnete novu igru?",
     "color-picker": "Dostupne boje",
-    "attempt-number": "Broj pokusaja"
+    "attempt-number": "Broj pokusaja",
+    "fill": "Morate popuniti sva polja!"
   },
   "game-message": {
     "win": "Pogodak!",
     "lose": "Izgubili ste!"
+  },
+  "exceptions": {
+    "warning": "Upozorenje!"
   }
 }

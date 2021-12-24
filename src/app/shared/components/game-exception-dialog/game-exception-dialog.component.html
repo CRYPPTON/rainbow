@@ -11,11 +11,29 @@
     <p>{{ "content.dialog-content" | translate }}</p>
   </mat-card-content>
   <mat-card-actions class="btns-container">
-    <button mat-raised-button color="primary" [mat-dialog-close]="true">
-      {{ "buttons.yes" | translate }}
-    </button>
-    <button mat-raised-button color="warn" [mat-dialog-close]="false">
-      {{ "buttons.no" | translate }}
-    </button>
+    <div
+      *ngIf="
+        data.informationDialogType !== 'fill';
+        then resetButtonsBlock;
+        else confirmButtonBlock
+      "
+    ></div>
   </mat-card-actions>
 </mat-card>
+
+<!-- Reset dialog buttons -->
+<ng-template #resetButtonsBlock>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">
+    {{ "buttons.yes" | translate }}
+  </button>
+  <button mat-raised-button color="warn" [mat-dialog-close]="false">
+    {{ "buttons.no" | translate }}
+  </button>
+</ng-template>
+
+<!-- Confirm dialog button -->
+<ng-template #confirmButtonBlock>
+  <button mat-raised-button color="primary" mat-dialog-close>
+    {{ "buttons.ok" | translate }}
+  </button>
+</ng-template>

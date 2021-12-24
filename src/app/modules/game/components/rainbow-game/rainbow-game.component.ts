@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GameEngineService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-rainbow-game',
@@ -7,6 +8,14 @@ import { Component } from '@angular/core';
 })
 export class RainbowGameComponent {
 
-  constructor() { }
+  constructor(private gameEngineService: GameEngineService) { }
+
+  //#region UI events
+
+  public onCheck(): void {
+    this.gameEngineService.checkWinCombination();
+  }
+
+  //#endregion
 
 }

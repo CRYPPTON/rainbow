@@ -5,7 +5,7 @@
 
       <!-- buttons container -->
       <div class="btns-container">
-        <button mat-raised-button color="primary">
+        <button (click)="onCheck()" mat-raised-button color="primary">
           {{ "buttons.check" | translate }}
         </button>
         <button mat-raised-button color="warn">
@@ -33,8 +33,8 @@
 
       <!-- Game tables -->
       <div class="game-tables">
-        <app-game-table ></app-game-table>
-        <app-game-table ></app-game-table>
+        <app-game-table [isUserTable]="true"></app-game-table>
+        <app-game-table [isUserTable]="false"></app-game-table>
       </div>
 
     </div>

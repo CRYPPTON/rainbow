@@ -2,7 +2,7 @@
   <ng-container *ngFor="let row of [1, 2, 3, 4, 5, 6, 7, 8]; let i = index">
     <ng-container *ngFor="let field of [1, 2, 3, 4]; let j = index">
       <!-- single table field -->
-      <app-single-game-table-field [row]="i" [col]="j"></app-single-game-table-field>
+      <app-single-game-table-field [isUserTable]='isUserTable' [row]="i" [col]="j"></app-single-game-table-field>
     </ng-container>
   </ng-container>
 </div>

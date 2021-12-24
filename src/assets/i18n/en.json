@@ -5,6 +5,7 @@
   "buttons": {
     "yes": "Yes",
     "no": "No",
+    "ok": "Ok",
     "test": "Test",
     "check": "Check",
     "reset": "Reset",
@@ -13,10 +14,14 @@
   "content": {
     "dialog-content": "Do you want to play a new game?",
     "color-picker": "Available color",
-    "attempt-number": "Attempt Number"
+    "attempt-number": "Attempt Number",
+    "fill": "You must fill all fields in row!"
   },
   "game-message": {
     "win": "You win!",
     "lose": "You lose!"
+  },
+  "exceptions": {
+    "warning": "Warning!"
   }
 }
