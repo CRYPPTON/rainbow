@@ -1,4 +1,17 @@
 .game-table {
   display: grid;
+  height: 800px;
+  width: 400px;
   grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+
+  @media screen and (max-width: 1200px) {
+    height: 700px;
+    width: 350px;
+  }
+
+  @media screen and (max-width: 600px) {
+    height: 400px;
+    width: 200px;
+  }
 }
