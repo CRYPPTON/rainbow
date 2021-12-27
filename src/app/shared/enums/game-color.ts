@@ -1,4 +1,4 @@
-export enum GameUserColor {
+export enum GameColor {
   blue,
   green,
   yellow,

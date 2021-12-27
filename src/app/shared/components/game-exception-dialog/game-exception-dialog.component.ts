@@ -21,7 +21,7 @@ export class GameExceptionDialogComponent {
     } else if (this.dialogType === InformationDialogType.lose) {
       this.title = 'Lose';
       this.icon = 'sentiment_very_dissatisfied';
-    } else if (this.dialogType === InformationDialogType.fillField) {
+    } else if (this.dialogType === InformationDialogType.fillFields) {
       this.title = 'Fill Fields';
       this.icon = 'announcement';
     }

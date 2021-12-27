@@ -12,8 +12,8 @@ export class RainbowGameComponent {
 
   //#region UI events
 
-  public onCheck(): void {
-    this.gameEngineService.checkWinCombination();
+  public onPlay(): void {
+    this.gameEngineService.play();
   }
 
   //#endregion

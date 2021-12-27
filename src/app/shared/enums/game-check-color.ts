@@ -1,4 +1,4 @@
 export enum GameCheckColor {
-  black,
-  grey
+  black = 'black',
+  grey = 'grey'
 }

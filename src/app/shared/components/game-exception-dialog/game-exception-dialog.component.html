@@ -7,33 +7,38 @@
       >{{ icon }}</mat-icon
     ></mat-card-title
   >
-  <mat-card-content class="dialog-content">
-    <p>{{ "content.dialog-content" | translate }}</p>
-  </mat-card-content>
-  <mat-card-actions class="btns-container">
-    <div
-      *ngIf="
-        data.informationDialogType !== 'fill';
-        then resetButtonsBlock;
-        else confirmButtonBlock
-      "
-    ></div>
-  </mat-card-actions>
+  <div
+    *ngIf="
+      data.informationDialogType !== 'fill';
+      then resetButtonsBlock;
+      else confirmButtonBlock
+    "
+  ></div>
 </mat-card>
 
 <!-- Reset dialog buttons -->
 <ng-template #resetButtonsBlock>
-  <button mat-raised-button color="primary" [mat-dialog-close]="true">
-    {{ "buttons.yes" | translate }}
-  </button>
-  <button mat-raised-button color="warn" [mat-dialog-close]="false">
-    {{ "buttons.no" | translate }}
-  </button>
+  <mat-card-content class="dialog-content">
+    <p>{{ "content.dialog-content" | translate }}</p>
+  </mat-card-content>
+  <mat-card-actions class="btns-container">
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">
+      {{ "buttons.yes" | translate }}
+    </button>
+    <button mat-raised-button color="warn" [mat-dialog-close]="false">
+      {{ "buttons.no" | translate }}
+    </button>
+  </mat-card-actions>
 </ng-template>
 
 <!-- Confirm dialog button -->
 <ng-template #confirmButtonBlock>
-  <button mat-raised-button color="primary" mat-dialog-close>
-    {{ "buttons.ok" | translate }}
-  </button>
+  <mat-card-content class="dialog-content">
+    <p>{{ "content.fill" | translate }}</p>
+  </mat-card-content>
+  <mat-card-actions class="btns-container">
+    <button mat-raised-button color="primary" mat-dialog-close>
+      {{ "buttons.ok" | translate }}
+    </button>
+  </mat-card-actions>
 </ng-template>

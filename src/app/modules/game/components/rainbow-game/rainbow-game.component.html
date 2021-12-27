@@ -5,7 +5,7 @@
 
       <!-- buttons container -->
       <div class="btns-container">
-        <button (click)="onCheck()" mat-raised-button color="primary">
+        <button (click)="onPlay()" mat-raised-button color="primary">
           {{ "buttons.check" | translate }}
         </button>
         <button mat-raised-button color="warn">
@@ -22,8 +22,8 @@
       <div class="pick-color col-md-12 p-2">
         {{ "content.color-picker" | translate }}:
         <ng-container
-          class="color-picker"
           *ngFor="let i of ['blue', 'green', 'yellow', 'orange', 'red']"
+          class="color-picker"
         >
           <ng-container
             *ngTemplateOutlet="avalableColor; context: { color: i }"
@@ -36,9 +36,7 @@
         <app-game-table [isUserTable]="true"></app-game-table>
         <app-game-table [isUserTable]="false"></app-game-table>
       </div>
-
     </div>
-
   </div>
 </div>
 
