@@ -1,12 +1,5 @@
 .single-game-field {
-  padding: 0;
-  margin: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  border: solid 1px gray;
-  cursor: pointer;
-  background-color: whitesmoke;
   height: 100%;
   width: 100%;
 
@@ -16,11 +9,9 @@
 
   -webkit-user-drag: none;
   -webkit-tap-highlight-color: transparent;
-
-  span {
-    height: 100%;
-    width: 100%;
-  }
 }
 
-
+button {
+  height: 100%;
+  width: 100%;
+}

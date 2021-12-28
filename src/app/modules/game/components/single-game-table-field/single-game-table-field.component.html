@@ -1,11 +1,10 @@
-<button
-  (click)="onSetColor(row, col)"
-  [disabled]="row !== activeTableRow"
-  matRipple
-  class="single-game-field"
->
-  <span *ngIf="isUserTable; else checkTable" class="{{ color }}"></span>
+<div (click)="onSetColor(row, col)" matRipple class="single-game-field">
+  <button
+    [disabled]="row !== activeTableRow"
+    *ngIf="isUserTable; else checkTable"
+    class="{{ color }}"
+  ></button>
   <ng-template #checkTable>
-    <span #checkTable class="{{ checkColor }}"></span>
+    <button [disabled]="true" #checkTable class="{{ checkColor }}"></button>
   </ng-template>
-</button>
+</div>

@@ -1,17 +1,17 @@
 <div class="container">
   <div class="justify-content-between row pt-2">
     <div class="col-md-2">
-      <div class="pb-3">{{ "content.attempt-number" | translate }}:</div>
+      <div class="pb-3">{{ "content.attempt-number" | translate }}: {{attempt}}</div>
 
       <!-- buttons container -->
       <div class="btns-container">
         <button (click)="onPlay()" mat-raised-button color="primary">
           {{ "buttons.check" | translate }}
         </button>
-        <button mat-raised-button color="warn">
+        <button (click)="onReset()" mat-raised-button color="warn">
           {{ "buttons.reset" | translate }}
         </button>
-        <button mat-raised-button color="accent">
+        <button (click)="onNewGame()" mat-raised-button color="accent">
           {{ "buttons.new-game" | translate }}
         </button>
       </div>
@@ -36,6 +36,7 @@
         <app-game-table [isUserTable]="true"></app-game-table>
         <app-game-table [isUserTable]="false"></app-game-table>
       </div>
+
     </div>
   </div>
 </div>
