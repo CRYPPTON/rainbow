@@ -30,36 +30,9 @@ export class GameEngineService {
 
   public play(): void {
 
-    //this.exceptionFillAllFields();
+    this.exceptionFillAllFields();
 
-    let hits: HitData = { correct: 0, incorrect: 0 };
-    let grey = [];
-    let black = [];
-
-    for (let i = 0; i < 4; i++) {
-      if (this.winCombination[i] === this.userGameTable[this.activeTableRow][i]) {
-        hits.correct++;
-        black.push(i);
-      }
-    }
-
-    for (let i = 0; i < 4; i++) {
-      for (let j = 0; j < 4; j++) {
-        if (
-          i != j &&
-          this.userGameTable[this.activeTableRow][j] === this.winCombination[i] &&
-          black.indexOf(j) == -1 &&
-          black.indexOf(i) == -1 &&
-          grey.indexOf(j) == -1
-        ) {
-          hits.incorrect++;
-          grey.push(j);
-          break;
-        }
-      }
-    }
-
-    console.log(hits);
+    const hits = this.compareTwoRow();
 
     this.setCheckTable(hits);
 
@@ -77,7 +50,6 @@ export class GameEngineService {
   public newGame(): void {
     this.initMethod();
     this.winCombination = this.generateCombination();
-    console.log(this.winCombination);
   }
 
   /**
@@ -122,7 +94,7 @@ export class GameEngineService {
   }
 
   private exceptionCheckEndGame(): void {
-    if(this.attempt >= 7 && !this.checkForWin()) {
+    if (this.attempt >= 7 && !this.checkForWin()) {
       throw new GameErrorHandler(
         this.translateService.instant('game-message.lose'),
         InformationDialogType.lose);
@@ -163,6 +135,44 @@ export class GameEngineService {
 
   //#region Game utility
 
+  /**
+   * Compare win combination of with user color combination.
+   * @returns an object that contain numbers of guessed color.
+   */
+  private compareTwoRow(): HitData {
+    let hits: HitData = { correct: 0, incorrect: 0 };
+    let grey = [];
+    let black = [];
+
+    for (let i = 0; i < 4; i++) {
+      if (this.winCombination[i] === this.userGameTable[this.activeTableRow][i]) {
+        hits.correct++;
+        black.push(i);
+      }
+    }
+
+    for (let i = 0; i < 4; i++) {
+      for (let j = 0; j < 4; j++) {
+        if (
+          i != j &&
+          this.userGameTable[this.activeTableRow][j] === this.winCombination[i] &&
+          black.indexOf(j) == -1 &&
+          black.indexOf(i) == -1 &&
+          grey.indexOf(j) == -1
+        ) {
+          hits.incorrect++;
+          grey.push(j);
+          break;
+        }
+      }
+    }
+    return hits;
+  }
+
+  /**
+   *
+   * @returns an empty array of arrays
+   */
   private createTable(): Array<[]> {
     let table = new Array();
     for (let i = 0; i < this.rows; i++) {
@@ -210,7 +220,7 @@ export class GameEngineService {
     let temp = ['yellow', 'yellow', 'green', 'green'];
     // let temp = [GameColor.blue, GameColor.red, GameColor.yellow, GameColor.blue];
 
-    return temp;
+    return randomCombination;
   }
 
   /**
