@@ -8,12 +8,28 @@ import { GameEngineService } from 'src/app/core/services';
 })
 export class RainbowGameComponent {
 
+  //#region Class properties
+
+  get attempt(): number {
+    return this.gameEngineService.attempt;
+  }
+
+  //#endregion
+
   constructor(private gameEngineService: GameEngineService) { }
 
   //#region UI events
 
   public onPlay(): void {
     this.gameEngineService.play();
+  }
+
+  public onReset(): void {
+    this.gameEngineService.reset();
+  }
+
+  public onNewGame(): void {
+    this.gameEngineService.newGame();
   }
 
   //#endregion

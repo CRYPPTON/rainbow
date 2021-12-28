@@ -1,6 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { GameEngineService } from 'src/app/core/services';
-import { GameColor } from 'src/app/shared/enums';
 
 @Component({
   selector: 'app-game-table',
@@ -15,14 +13,6 @@ export class GameTableComponent {
 
   //#endregion
 
-  //#region Class properties
-
-  public get userGameTable(): Array<GameColor[]> {
-    return this.gameEngineService.userGameTable;
-  }
-
-  //#endregion
-
-  constructor(private gameEngineService: GameEngineService) { }
+  constructor() { }
 
 }

@@ -19,10 +19,10 @@
 <!-- Reset dialog buttons -->
 <ng-template #resetButtonsBlock>
   <mat-card-content class="dialog-content">
-    <p>{{ "content.dialog-content" | translate }}</p>
+    <div>{{ "content.dialog-content" | translate }}</div>
   </mat-card-content>
   <mat-card-actions class="btns-container">
-    <button mat-raised-button color="primary" [mat-dialog-close]="true">
+    <button (click)="onNewGame()" mat-raised-button color="primary" [mat-dialog-close]="true">
       {{ "buttons.yes" | translate }}
     </button>
     <button mat-raised-button color="warn" [mat-dialog-close]="false">
@@ -34,7 +34,7 @@
 <!-- Confirm dialog button -->
 <ng-template #confirmButtonBlock>
   <mat-card-content class="dialog-content">
-    <p>{{ "content.fill" | translate }}</p>
+    <div>{{ "content.fill" | translate }}</div>
   </mat-card-content>
   <mat-card-actions class="btns-container">
     <button mat-raised-button color="primary" mat-dialog-close>

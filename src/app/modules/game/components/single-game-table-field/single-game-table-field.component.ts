@@ -1,13 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { GameEngineService } from '@app-services';
 import { GameCheckColor, GameColor } from '@app-enums';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-single-game-table-field',
   templateUrl: './single-game-table-field.component.html',
   styleUrls: ['./single-game-table-field.component.scss']
 })
-export class SingleGameTableFieldComponent {
+export class SingleGameTableFieldComponent implements OnInit, OnDestroy {
 
   //#region Angular stuff
 
@@ -32,16 +33,29 @@ export class SingleGameTableFieldComponent {
   }
 
   public get activeTableRow(): number {
-    return this.gameEngineService.activeTableRow;
+    return this.gameEngineService.activeRow;
   }
 
   private numberOfClick: number = 0;
+  private counterSubscription$: Subscription;
 
   //#endregion
 
-  constructor(private gameEngineService: GameEngineService) {
-    this.gameEngineService.checkGameTable
+  constructor(private gameEngineService: GameEngineService) {}
+
+  //#region Life cycle events
+
+  public ngOnInit(): void {
+    this.counterSubscription$ = this.gameEngineService.counter$.subscribe(value => {
+      this.numberOfClick = value;
+    });
   }
+
+  public ngOnDestroy(): void {
+    this.counterSubscription$.unsubscribe();
+  }
+
+  //#endregion
 
   //#region UI events
 
@@ -51,9 +65,8 @@ export class SingleGameTableFieldComponent {
       this.gameEngineService.setUserTableColor(row, col, colorNumber);
       this.numberOfClick++;
     }
-
-    //#endregion
-
   }
+
+  //#endregion
 
 }

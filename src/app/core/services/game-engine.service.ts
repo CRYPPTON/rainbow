@@ -3,6 +3,7 @@ import { GameCheckColor, GameColor, InformationDialogType } from '@app-enums';
 import { TranslateService } from '@ngx-translate/core';
 import { GameErrorHandler } from '@app-error-handlers';
 import { HitData } from '@app-models';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,10 @@ export class GameEngineService {
 
   //#region Class properties
 
-  userGameTable: Array<GameColor[]>;
+  counter$ = new BehaviorSubject<number>(0);
   checkGameTable: Array<GameCheckColor[]>;
-  activeTableRow: number;
+  userGameTable: Array<GameColor[]>;
+  activeRow: number;
   attempt: number;
 
   private rows: number;
@@ -30,7 +32,7 @@ export class GameEngineService {
 
   public play(): void {
 
-    this.exceptionFillAllFields();
+    //this.exceptionFillAllFields();
 
     const hits = this.compareTwoRow();
 
@@ -40,7 +42,7 @@ export class GameEngineService {
 
     this.exceptionCheckEndGame();
 
-    this.activeTableRow--;
+    this.activeRow--;
     this.attempt++;
   }
 
@@ -69,8 +71,9 @@ export class GameEngineService {
   private initMethod() {
     this.rows = 8;
     this.columns = 4;
-    this.activeTableRow = this.rows - 1;
+    this.activeRow = this.rows - 1;
     this.attempt = 0;
+    this.counter$.next(0);
 
     this.userGameTable = this.createTable();
     this.checkGameTable = this.createTable();
@@ -84,8 +87,8 @@ export class GameEngineService {
    * Check for empty fields in active row.
    */
   private exceptionFillAllFields(): void {
-    for (let i = 0; i < this.userGameTable[this.activeTableRow].length; i++) {
-      if (!this.userGameTable[this.activeTableRow][i]) {
+    for (let i = 0; i < this.userGameTable[this.activeRow].length; i++) {
+      if (!this.userGameTable[this.activeRow][i]) {
         throw new GameErrorHandler(
           this.translateService.instant('exceptions.warning'),
           InformationDialogType.fillFields);
@@ -94,7 +97,7 @@ export class GameEngineService {
   }
 
   private exceptionCheckEndGame(): void {
-    if (this.attempt >= 7 && !this.checkForWin()) {
+    if (this.attempt >= this.rows - 1 && !this.checkForWin()) {
       throw new GameErrorHandler(
         this.translateService.instant('game-message.lose'),
         InformationDialogType.lose);
@@ -121,13 +124,12 @@ export class GameEngineService {
   private checkForWin(): boolean {
     let isAllCorrect: boolean = true;
 
-    for (let i = 0; i < this.checkGameTable[this.activeTableRow].length; i++) {
-      if ((this.checkGameTable[this.activeTableRow][0] !==
-        this.checkGameTable[this.activeTableRow][i]) ||
-        this.checkGameTable[this.activeTableRow][0] == undefined) {
+    for (let i = 0; i < this.checkGameTable[this.activeRow].length; i++) {
+      if (this.checkGameTable[this.activeRow][i] !== GameCheckColor.black) {
         isAllCorrect = false;
       }
     }
+
     return isAllCorrect;
   }
 
@@ -145,7 +147,7 @@ export class GameEngineService {
     let black = [];
 
     for (let i = 0; i < 4; i++) {
-      if (this.winCombination[i] === this.userGameTable[this.activeTableRow][i]) {
+      if (this.winCombination[i] === this.userGameTable[this.activeRow][i]) {
         hits.correct++;
         black.push(i);
       }
@@ -155,7 +157,7 @@ export class GameEngineService {
       for (let j = 0; j < 4; j++) {
         if (
           i != j &&
-          this.userGameTable[this.activeTableRow][j] === this.winCombination[i] &&
+          this.userGameTable[this.activeRow][j] === this.winCombination[i] &&
           black.indexOf(j) == -1 &&
           black.indexOf(i) == -1 &&
           grey.indexOf(j) == -1
@@ -198,9 +200,9 @@ export class GameEngineService {
   private setCheckTable(hits: HitData) {
     for (let i = 0; i < hits.correct + hits.incorrect; i++) {
       if (i < hits.correct) {
-        this.checkGameTable[this.activeTableRow][i] = GameCheckColor.black;
+        this.checkGameTable[this.activeRow][i] = GameCheckColor.black;
       } else {
-        this.checkGameTable[this.activeTableRow][i] = GameCheckColor.grey;
+        this.checkGameTable[this.activeRow][i] = GameCheckColor.grey;
       }
     }
   }
@@ -211,21 +213,17 @@ export class GameEngineService {
    */
   private generateCombination(): GameColor[] | string[] {
     let randomCombination: GameColor[] = new Array();
+
     for (let i = 0; i < this.columns; i++) {
       let randomInt = this.randomInteger();
       randomCombination.push(<GameColor><unknown>GameColor[randomInt]);
     }
-
-    // test combination;
-    let temp = ['yellow', 'yellow', 'green', 'green'];
-    // let temp = [GameColor.blue, GameColor.red, GameColor.yellow, GameColor.blue];
-
     return randomCombination;
   }
 
   /**
   *
-  * @returns random number beetwen 0 - length.
+  * @returns random number beetwen 0 and length.
   */
   private randomInteger(): number {
     // get enum length
