@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { GameCheckColor, GameColor, InformationDialogType } from '@app-enums';
 import { TranslateService } from '@ngx-translate/core';
 import { GameErrorHandler } from '@app-error-handlers';
+import { HitData } from '@app-models';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class GameEngineService {
   userGameTable: Array<GameColor[]>;
   checkGameTable: Array<GameCheckColor[]>;
   activeTableRow: number;
+  attempt: number;
 
   private rows: number;
   private columns: number;
@@ -21,42 +23,16 @@ export class GameEngineService {
   //#endregion
 
   constructor(private translateService: TranslateService) {
-    this.initMethod();
+    this.newGame();
   }
 
   //#region Game functionality
 
   public play(): void {
 
-    this.exceptionFillAllFields();
+    //this.exceptionFillAllFields();
 
-    let hits = { correct: 0, incorrect: 0 };
-
-    let hitTest = { correct: 0, incorrect: 0 };
-
-    let winColorCombination = this.winCombination.slice();
-    let userRowCombination = this.userGameTable[this.activeTableRow].slice();
-
-    // for (let i = 0; i < winColorCombination.length; i++) {
-    //   if (winColorCombination[i] === userRowCombination[i]) {
-    //     hitTest.correct += 1;
-    //     winColorCombination[i] = null;
-    //     userRowCombination[i] = null;
-    //   }
-    // }
-
-    // for (let i = 0; i < userRowCombination.length; i++) {
-    //   for (let j = 0; j < winColorCombination.length; j++) {
-    //     if (userRowCombination[j] && winColorCombination[i]) {
-    //       if (userRowCombination[j] === winColorCombination[i]) {
-    //         hitTest.incorrect += 1;
-    //         userRowCombination[j] = null;
-    //         winColorCombination[i] = null;
-    //       }
-    //     }
-    //   }
-    // }
-
+    let hits: HitData = { correct: 0, incorrect: 0 };
     let grey = [];
     let black = [];
 
@@ -74,19 +50,41 @@ export class GameEngineService {
           this.userGameTable[this.activeTableRow][j] === this.winCombination[i] &&
           black.indexOf(j) == -1 &&
           black.indexOf(i) == -1 &&
-          grey.indexOf(i) == -1
+          grey.indexOf(j) == -1
         ) {
           hits.incorrect++;
-          grey.push(i);
+          grey.push(j);
+          break;
         }
       }
     }
+
+    console.log(hits);
 
     this.setCheckTable(hits);
 
     this.exceptionCheckWin();
 
+    this.exceptionCheckEndGame();
+
     this.activeTableRow--;
+    this.attempt++;
+  }
+
+  /**
+   * create new game
+   */
+  public newGame(): void {
+    this.initMethod();
+    this.winCombination = this.generateCombination();
+    console.log(this.winCombination);
+  }
+
+  /**
+   * reset user game table.
+   */
+  public reset(): void {
+    this.initMethod();
   }
 
   //#endregion
@@ -100,11 +98,10 @@ export class GameEngineService {
     this.rows = 8;
     this.columns = 4;
     this.activeTableRow = this.rows - 1;
+    this.attempt = 0;
 
     this.userGameTable = this.createTable();
     this.checkGameTable = this.createTable();
-
-    this.winCombination = this.generateCombination();
   }
 
   //#endregion
@@ -124,8 +121,16 @@ export class GameEngineService {
     }
   }
 
+  private exceptionCheckEndGame(): void {
+    if(this.attempt >= 7 && !this.checkForWin()) {
+      throw new GameErrorHandler(
+        this.translateService.instant('game-message.lose'),
+        InformationDialogType.lose);
+    }
+  }
+
   /**
-   *
+   * Check win for active row.
    */
   private exceptionCheckWin(): void {
     let isAllCorrect = this.checkForWin();
@@ -178,9 +183,9 @@ export class GameEngineService {
 
   /**
    * Set table with hits.
-   * @param hits object that contain correct and incorrect hits.
+   * @param hits object that contain number of correct and incorrect hits.
    */
-  private setCheckTable(hits) {
+  private setCheckTable(hits: HitData) {
     for (let i = 0; i < hits.correct + hits.incorrect; i++) {
       if (i < hits.correct) {
         this.checkGameTable[this.activeTableRow][i] = GameCheckColor.black;
@@ -191,8 +196,8 @@ export class GameEngineService {
   }
 
   /**
-   *
-   * @returns a random array with 'GameColor'.
+   * Generate random combination.
+   * @returns an array that contain random combinations of colors.
    */
   private generateCombination(): GameColor[] | string[] {
     let randomCombination: GameColor[] = new Array();
@@ -200,17 +205,23 @@ export class GameEngineService {
       let randomInt = this.randomInteger();
       randomCombination.push(<GameColor><unknown>GameColor[randomInt]);
     }
-    let temp = ['yellow', 'green', 'green', 'orange'];
+
+    // test combination;
+    let temp = ['yellow', 'yellow', 'green', 'green'];
     // let temp = [GameColor.blue, GameColor.red, GameColor.yellow, GameColor.blue];
+
     return temp;
   }
 
   /**
   *
-  * @returns a array with random combination of game color:
+  * @returns random number beetwen 0 - length.
   */
   private randomInteger(): number {
-    return Math.floor(Math.random() * 5);
+    // get enum length
+    let length = Object.keys(GameColor).length / 2;
+
+    return Math.floor(Math.random() * length);
   }
 
   //#endregion
