@@ -35,7 +35,7 @@ export class GameEngineService {
 
     this.exceptionFillAllFields();
 
-    const hits = this.compareTwoRow();
+    const hits = this.compareTwoRows();
 
     this.setCheckTable(hits);
 
@@ -56,7 +56,7 @@ export class GameEngineService {
   }
 
   /**
-   *
+   *  Set active row to null.
    */
   public endGame(): void {
     this.isGameOver = true;
@@ -130,7 +130,7 @@ export class GameEngineService {
 
   /**
    * Check that all fields are guessed.
-   * @returns
+   * @returns 'true' or 'false' depending on whether all values ​​in the row are black.
    */
   private checkForWin(): boolean {
     let isAllCorrect: boolean = true;
@@ -149,23 +149,23 @@ export class GameEngineService {
   //#region Game utility
 
   /**
-   * Compare win combination of with user color combination.
+   * Compare win combination with user color combination.
    * @returns an object that contain numbers of guessed color.
    */
-  private compareTwoRow(): HitData {
+  private compareTwoRows(): HitData {
     let hits: HitData = { correct: 0, incorrect: 0 };
     let grey = [];
     let black = [];
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < this.columns; i++) {
       if (this.winCombination[i] === this.userGameTable[this.activeRow][i]) {
         hits.correct++;
         black.push(i);
       }
     }
 
-    for (let i = 0; i < 4; i++) {
-      for (let j = 0; j < 4; j++) {
+    for (let i = 0; i < this.columns; i++) {
+      for (let j = 0; j < this.columns; j++) {
         if (
           i != j &&
           this.userGameTable[this.activeRow][j] === this.winCombination[i] &&
@@ -183,7 +183,7 @@ export class GameEngineService {
   }
 
   /**
-   *
+   * Create a empty table for game.
    * @returns an empty array of arrays.
    */
   private createTable(): Array<[]> {
@@ -233,7 +233,7 @@ export class GameEngineService {
   }
 
   /**
-  *
+  * Use method to generate random number.
   * @returns random number beetwen 0 and length.
   */
   private randomInteger(): number {
