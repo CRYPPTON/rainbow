@@ -5,13 +5,23 @@
   "buttons": {
     "yes": "Yes",
     "no": "No",
-    "test": "Test"
+    "ok": "Ok",
+    "test": "Test",
+    "check": "Check",
+    "reset": "Reset",
+    "new-game": "New Game"
   },
   "content": {
-    "dialog-content": "Do you want to play a new game?"
+    "dialog-content": "Do you want to play a new game?",
+    "color-picker": "Available color",
+    "attempt-number": "Attempt Number",
+    "fill": "You must fill all fields in row!"
   },
   "game-message": {
     "win": "You win!",
     "lose": "You lose!"
+  },
+  "exceptions": {
+    "warning": "Warning!"
   }
 }

@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="justify-content-between row pt-2">
+    <div class="col-md-2">
+      <div class="pb-3">{{ "content.attempt-number" | translate }}: {{attempt}}</div>
+
+      <!-- buttons container -->
+      <div class="btns-container">
+        <button (click)="onPlay()" [disabled]="gameOver" mat-raised-button color="primary">
+          {{ "buttons.check" | translate }}
+        </button>
+        <button (click)="onReset()" [disabled]="gameOver" mat-raised-button color="warn">
+          {{ "buttons.reset" | translate }}
+        </button>
+        <button (click)="onNewGame()" mat-raised-button color="accent">
+          {{ "buttons.new-game" | translate }}
+        </button>
+      </div>
+    </div>
+
+    <div class="row col-md-10">
+      <!-- Avalable colors container. -->
+      <div class="pick-color col-md-12 p-2">
+        {{ "content.color-picker" | translate }}:
+        <ng-container
+          *ngFor="let i of ['blue', 'green', 'yellow', 'orange', 'red']"
+          class="color-picker"
+        >
+          <ng-container
+            *ngTemplateOutlet="avalableColor; context: { color: i }"
+          ></ng-container>
+        </ng-container>
+      </div>
+
+      <!-- Game tables -->
+      <div class="game-tables">
+        <app-game-table [isUserTable]="true"></app-game-table>
+        <app-game-table [isUserTable]="false"></app-game-table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Avalable color template. -->
+<ng-template #avalableColor let-color="color">
+  <span class="color-box {{ color }}"> </span>
+</ng-template>

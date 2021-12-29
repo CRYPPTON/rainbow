@@ -7,15 +7,38 @@
       >{{ icon }}</mat-icon
     ></mat-card-title
   >
+  <div
+    *ngIf="
+      data.informationDialogType !== 'fill';
+      then resetButtonsBlock;
+      else confirmButtonBlock
+    "
+  ></div>
+</mat-card>
+
+<!-- Reset dialog buttons -->
+<ng-template #resetButtonsBlock>
   <mat-card-content class="dialog-content">
-    <p>{{ "content.dialog-content" | translate }}</p>
+    <div>{{ "content.dialog-content" | translate }}</div>
   </mat-card-content>
   <mat-card-actions class="btns-container">
-    <button mat-raised-button color="primary" [mat-dialog-close]="true">
+    <button (click)="onNewGame()" mat-raised-button color="primary" mat-dialog-close>
       {{ "buttons.yes" | translate }}
     </button>
-    <button mat-raised-button color="warn" [mat-dialog-close]="false">
+    <button (click)="onEndGame()" mat-raised-button color="warn" mat-dialog-close>
       {{ "buttons.no" | translate }}
     </button>
   </mat-card-actions>
-</mat-card>
+</ng-template>
+
+<!-- Confirm dialog button -->
+<ng-template #confirmButtonBlock>
+  <mat-card-content class="dialog-content">
+    <div>{{ "content.fill" | translate }}</div>
+  </mat-card-content>
+  <mat-card-actions class="btns-container">
+    <button mat-raised-button color="primary" mat-dialog-close>
+      {{ "buttons.ok" | translate }}
+    </button>
+  </mat-card-actions>
+</ng-template>

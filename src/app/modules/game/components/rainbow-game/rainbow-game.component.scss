@@ -1,0 +1,21 @@
+.btns-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 120px;
+}
+.pick-color {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.color-box {
+  width: 16px;
+  height: 16px;
+}
+
+.game-tables {
+  display: flex;
+  justify-content: space-between;
+  width: 900px;
+}

@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { InformationDialogType } from '@app-enums';
 import { InformationDialogData } from '@app-models';
+import { GameEngineService } from '@app-services';
 
 @Component({
   selector: 'app-game-exception-dialog',
@@ -9,19 +10,33 @@ import { InformationDialogData } from '@app-models';
   styleUrls: ['./game-exception-dialog.component.scss']
 })
 export class GameExceptionDialogComponent {
-  public title: string;
   public icon: string;
   public dialogType: InformationDialogType;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: InformationDialogData) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: InformationDialogData,
+    private gameEngineService: GameEngineService
+  ) {
     this.dialogType = data.informationDialogType;
     if (this.dialogType === InformationDialogType.win) {
-      this.title = 'Win';
       this.icon = 'sentiment_very_satisfied';
-    } else {
-      this.title = 'Lose';
+    } else if (this.dialogType === InformationDialogType.lose) {
       this.icon = 'sentiment_very_dissatisfied';
+    } else if (this.dialogType === InformationDialogType.fillFields) {
+      this.icon = 'announcement';
     }
   }
+
+  //#region UI events
+
+  public onNewGame(): void {
+    this.gameEngineService.newGame();
+  }
+
+  public onEndGame(): void {
+    this.gameEngineService.endGame();
+  }
+
+  //#endregion
 
 }

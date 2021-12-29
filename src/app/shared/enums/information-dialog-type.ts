@@ -1,4 +1,5 @@
 export enum InformationDialogType {
   win = 'win',
-  lose = 'lose'
+  lose = 'lose',
+  fillFields = 'fill'
 }
