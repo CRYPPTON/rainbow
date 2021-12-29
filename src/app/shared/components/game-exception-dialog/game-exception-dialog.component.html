@@ -22,10 +22,10 @@
     <div>{{ "content.dialog-content" | translate }}</div>
   </mat-card-content>
   <mat-card-actions class="btns-container">
-    <button (click)="onNewGame()" mat-raised-button color="primary" [mat-dialog-close]="true">
+    <button (click)="onNewGame()" mat-raised-button color="primary" mat-dialog-close>
       {{ "buttons.yes" | translate }}
     </button>
-    <button mat-raised-button color="warn" [mat-dialog-close]="false">
+    <button (click)="onEndGame()" mat-raised-button color="warn" mat-dialog-close>
       {{ "buttons.no" | translate }}
     </button>
   </mat-card-actions>

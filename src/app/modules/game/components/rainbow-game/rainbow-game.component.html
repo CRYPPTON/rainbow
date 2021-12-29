@@ -5,10 +5,10 @@
 
       <!-- buttons container -->
       <div class="btns-container">
-        <button (click)="onPlay()" mat-raised-button color="primary">
+        <button (click)="onPlay()" [disabled]="gameOver" mat-raised-button color="primary">
           {{ "buttons.check" | translate }}
         </button>
-        <button (click)="onReset()" mat-raised-button color="warn">
+        <button (click)="onReset()" [disabled]="gameOver" mat-raised-button color="warn">
           {{ "buttons.reset" | translate }}
         </button>
         <button (click)="onNewGame()" mat-raised-button color="accent">

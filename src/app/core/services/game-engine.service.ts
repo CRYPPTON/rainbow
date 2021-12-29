@@ -17,6 +17,7 @@ export class GameEngineService {
   userGameTable: Array<GameColor[]>;
   activeRow: number;
   attempt: number;
+  isGameOver: boolean
 
   private rows: number;
   private columns: number;
@@ -32,7 +33,7 @@ export class GameEngineService {
 
   public play(): void {
 
-    //this.exceptionFillAllFields();
+    this.exceptionFillAllFields();
 
     const hits = this.compareTwoRow();
 
@@ -47,11 +48,19 @@ export class GameEngineService {
   }
 
   /**
-   * create new game
+   * create new game.
    */
   public newGame(): void {
     this.initMethod();
     this.winCombination = this.generateCombination();
+  }
+
+  /**
+   *
+   */
+  public endGame(): void {
+    this.isGameOver = true;
+    this.activeRow = null;
   }
 
   /**
@@ -74,6 +83,7 @@ export class GameEngineService {
     this.activeRow = this.rows - 1;
     this.attempt = 0;
     this.counter$.next(0);
+    this.isGameOver = false;
 
     this.userGameTable = this.createTable();
     this.checkGameTable = this.createTable();
@@ -98,6 +108,7 @@ export class GameEngineService {
 
   private exceptionCheckEndGame(): void {
     if (this.attempt >= this.rows - 1 && !this.checkForWin()) {
+      this.isGameOver = true;
       throw new GameErrorHandler(
         this.translateService.instant('game-message.lose'),
         InformationDialogType.lose);
@@ -173,7 +184,7 @@ export class GameEngineService {
 
   /**
    *
-   * @returns an empty array of arrays
+   * @returns an empty array of arrays.
    */
   private createTable(): Array<[]> {
     let table = new Array();
@@ -226,7 +237,7 @@ export class GameEngineService {
   * @returns random number beetwen 0 and length.
   */
   private randomInteger(): number {
-    // get enum length
+    // get enum length.
     let length = Object.keys(GameColor).length / 2;
 
     return Math.floor(Math.random() * length);

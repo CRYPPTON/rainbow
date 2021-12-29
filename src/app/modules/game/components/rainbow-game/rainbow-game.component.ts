@@ -14,6 +14,10 @@ export class RainbowGameComponent {
     return this.gameEngineService.attempt;
   }
 
+  get gameOver(): boolean {
+    return this.gameEngineService.isGameOver;
+  }
+
   //#endregion
 
   constructor(private gameEngineService: GameEngineService) { }

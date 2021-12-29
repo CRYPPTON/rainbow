@@ -33,6 +33,10 @@ export class GameExceptionDialogComponent {
     this.gameEngineService.newGame();
   }
 
+  public onEndGame(): void {
+    this.gameEngineService.endGame();
+  }
+
   //#endregion
 
 }
